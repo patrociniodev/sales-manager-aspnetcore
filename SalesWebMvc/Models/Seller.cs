@@ -22,6 +22,7 @@ namespace SalesWebMvc.Models
         ICollection<SalesRecord> Sales = new List<SalesRecord>();
 
         //Chave estrangeira para relacionamento entre tabelas associadas
+        [Display(Name = "Department Id")]
         public int DepartmentId { get; set; }
 
 
