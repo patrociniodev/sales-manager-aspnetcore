@@ -38,15 +38,15 @@ namespace SalesWebMvc
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
-            //Migration com provider mysql
+            //Added provider MySQL
             services.AddDbContext<SalesWebMvcContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("SalesWebMvcContext"),
                     builder => builder.MigrationsAssembly("SalesWebMvc")));
 
-            //Adding seeding service
+            //Added seeding service
             services.AddScoped<SeedingService>();
 
-            //Adding seller service
+            //Added seller service
             services.AddScoped<SellerService>();
         }
 

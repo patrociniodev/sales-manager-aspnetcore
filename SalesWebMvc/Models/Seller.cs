@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,12 +11,19 @@ namespace SalesWebMvc.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+
+        [Display(Name = "Birth Date")]
         public DateTime BirthDate { get; set; }
+
+        [Display(Name = "Base Salary")]
         public double BaseSalary { get; set; }
 
         public Department Department { get; set; }
-
         ICollection<SalesRecord> Sales = new List<SalesRecord>();
+
+        //Chave estrangeira para relacionamento entre tabelas associadas
+        public int DepartmentId { get; set; }
+
 
         public Seller()
         {
