@@ -36,8 +36,10 @@ namespace SalesWebMvc.Services
 
         public void Remove(int id)
         {
-            var obj = _context.Seller.Find(id);
-            _context.Seller.Remove(obj);
+            var seller = _context.Seller.Include(s => s.Sales).FirstOrDefault(s => s.Id == id);
+
+            _context.SalesRecord.RemoveRange(seller.Sales);
+            _context.Seller.Remove(seller);
             _context.SaveChanges();
         }
 
