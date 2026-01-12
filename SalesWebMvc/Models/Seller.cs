@@ -19,7 +19,7 @@ namespace SalesWebMvc.Models
         public double BaseSalary { get; set; }
 
         public Department Department { get; set; }
-        ICollection<SalesRecord> Sales = new List<SalesRecord>();
+        public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
         //Chave estrangeira para relacionamento entre tabelas associadas
         [Display(Name = "Department Id")]
