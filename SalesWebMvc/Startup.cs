@@ -40,15 +40,15 @@ namespace SalesWebMvc
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            //Added provider MySQL
+            //Adding MySQL provider
             services.AddDbContext<SalesWebMvcContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("SalesWebMvcContext"),
                     builder => builder.MigrationsAssembly("SalesWebMvc")));
 
-            //Added seeding service
+            //Seeding service
             services.AddScoped<SeedingService>();
 
-            //Added seller service
+            //Seller service
             services.AddScoped<SellerService>();
 
             //Department service
@@ -72,7 +72,7 @@ namespace SalesWebMvc
             {
                 app.UseDeveloperExceptionPage();
 
-                //Seeding database
+                //Database seeding
                 seedingService.Seed();
             }
             else
