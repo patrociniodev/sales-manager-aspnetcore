@@ -36,11 +36,17 @@ namespace SalesWebMvc.Services
 
         public async Task RemoveAsync(int id)
         {
-            var seller = _context.Seller.Include(s => s.Sales).FirstOrDefault(s => s.Id == id);
-
-            _context.SalesRecord.RemoveRange(seller.Sales);
-            _context.Seller.Remove(seller);
-            await _context.SaveChangesAsync();
+            try
+            {
+                var seller = _context.Seller.Include(s => s.Sales).FirstOrDefault(s => s.Id == id);
+                _context.SalesRecord.RemoveRange(seller.Sales);
+                _context.Seller.Remove(seller);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException e)
+            {
+                throw new IntegrityException(e.Message);
+            }
         }
 
         public async Task UpdateAsync(Seller obj)
